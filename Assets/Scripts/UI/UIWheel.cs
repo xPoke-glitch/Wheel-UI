@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using DG.Tweening;
+using System;
 
 public class UIWheel : MonoBehaviour
 {
@@ -18,22 +19,47 @@ public class UIWheel : MonoBehaviour
     private void Start()
     {
         InitWheelForAnimation();
-
-        // Test Only
-        ShowWheel(2.0f);
-        // ==============
     }
 
-    public void ShowWheel(float delay = 0)
+    public void SetSelectionByIndex(int index, bool isSelected)
+    {
+        if(index < 0 || index >= _uiWheelOptions.Count)
+        {
+            Debug.LogError("UIWheel: Index out of Bounds for Wheel Options Selection");
+            return;
+        }
+         
+        _uiWheelOptions[index].SetSelection(isSelected);
+    }
+
+    public int GetOptionsCount()
+    {
+        return _uiWheelOptions.Count;
+    }
+
+    public int GetWheelOptionIndex(UIWheelOption option)
+    {
+        return _uiWheelOptions.IndexOf(option);
+    }
+
+    public void ShowWheel(float delay = 0, Action OnComplete = null)
     {
         this.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack).SetDelay(delay);
         _leftWheel.transform.DOLocalRotate(Vector3.zero, 0.5f).SetEase(Ease.OutBack).SetDelay(delay+0.1f);
-        _rightWheel.transform.DOLocalRotate(Vector3.zero, 0.5f).SetEase(Ease.OutBack).SetDelay(delay+0.1f);
+        _rightWheel.transform.DOLocalRotate(Vector3.zero, 0.5f).SetEase(Ease.OutBack).SetDelay(delay + 0.1f).OnComplete(() =>
+        {
+            OnComplete?.Invoke();
+        });
     }
 
-    public void HideWheel()
+    public void HideWheel(float delay = 0, Action OnComplete = null)
     {
-        // TODO
+        this.transform.DOScale(Vector3.zero, 0.5f).SetEase(Ease.InBack).SetDelay(delay).OnComplete(() =>
+        {
+            OnComplete?.Invoke();
+        }); ;
+        _leftWheel.transform.DOLocalRotate(new Vector3(0,0,-45), 0.5f).SetEase(Ease.InBack).SetDelay(delay - 0.1f);
+        _rightWheel.transform.DOLocalRotate(new Vector3(0, 0, 45), 0.5f).SetEase(Ease.InBack).SetDelay(delay - 0.1f);
     }
 
     private void InitWheelForAnimation()

@@ -1,9 +1,15 @@
 
+using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UIWheelOption : MonoBehaviour
+public class UIWheelOption : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    public static event Action<UIWheelOption> OnMouseEnterOption;
+
+    public static event Action<UIWheelOption> OnMouseExitOption;
+
     public bool IsSelected { get; private set; }
 
     [Header("References")]
@@ -42,7 +48,7 @@ public class UIWheelOption : MonoBehaviour
     private void HandleInitState()
     {
         IsSelected = false;
-        _iconImage.enabled = false; // TODO: The icon will be managed by the animation - or default true
+        _iconImage.enabled = true; // TODO: The icon will be managed by the animation - or default true
         _backgroundImage.color = _deselectedColor;
     }
 
@@ -54,5 +60,15 @@ public class UIWheelOption : MonoBehaviour
     private void HandleDeselectedState()
     {
         _backgroundImage.color = _deselectedColor;
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        OnMouseEnterOption?.Invoke(this);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        OnMouseExitOption?.Invoke(this);
     }
 }
