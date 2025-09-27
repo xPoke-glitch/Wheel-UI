@@ -6,6 +6,8 @@ public class WheelController : MonoBehaviour
     [Header("References")]
     [SerializeField]
     private UIWheel _uiWheel;
+    [SerializeField]
+    private Entity _entity;
 
     [Header("Input Actions")]
     [SerializeField]
@@ -16,6 +18,7 @@ public class WheelController : MonoBehaviour
 
     private int _currentSelectedIndex = 0;
 
+    private bool _isWheelActive = false;
 
     private void Start()
     {
@@ -25,11 +28,7 @@ public class WheelController : MonoBehaviour
             return;
         }
         _currentSelectedIndex = 0;
-
-        // TEST ONLY
-        _uiWheel.ShowWheel(2.0f, ()=> {
-            _uiWheel.SetSelectionByIndex(_currentSelectedIndex, true);
-        });
+        _isWheelActive = false;
     }
 
     private void OnEnable()
@@ -41,6 +40,8 @@ public class WheelController : MonoBehaviour
         _goPrevOptionAction.performed += ctx => GoPreviousWheelOption();
 
         UIWheelOption.OnMouseEnterOption += HandleOnMouseEnterOption;
+
+        Entity.OnEntityClicked += HandleOnEntityClicked;
     }
 
     private void OnDisable()
@@ -52,6 +53,8 @@ public class WheelController : MonoBehaviour
         _goPrevOptionAction.performed -= ctx => GoPreviousWheelOption();
 
         UIWheelOption.OnMouseEnterOption -= HandleOnMouseEnterOption;
+
+        Entity.OnEntityClicked -= HandleOnEntityClicked;
     }
 
 
@@ -73,6 +76,7 @@ public class WheelController : MonoBehaviour
     {
         _uiWheel.SetSelectionByIndex(_currentSelectedIndex, false);
         _currentSelectedIndex = 0;
+        _isWheelActive = false;
     }
 
     private void HandleOnMouseEnterOption(UIWheelOption option)
@@ -89,5 +93,21 @@ public class WheelController : MonoBehaviour
     private void HandleOnMouseExitOption(UIWheelOption option)
     {
         // Optional: Implement logic for when the mouse exits an option, if needed.
+    }
+
+    private void HandleOnEntityClicked(Entity entity)
+    {
+        if(_isWheelActive)
+        {
+            return;
+        }
+        
+        if (entity == _entity)
+        {
+            _isWheelActive = true;
+           _uiWheel.ShowWheel(0, () => {
+                _uiWheel.SetSelectionByIndex(_currentSelectedIndex, true);
+            });
+        }
     }
 }
