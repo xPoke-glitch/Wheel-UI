@@ -522,6 +522,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 337893584}
+  - component: {fileID: 337893585}
   m_Layer: 5
   m_Name: Wheel
   m_TagString: Untagged
@@ -552,6 +553,26 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 267.97, y: 260.16}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &337893585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 337893583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd305ba01257ea44b9a9d5d9adf3efc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIWheel
+  _centerWheel: {fileID: 1648890812}
+  _leftWheel: {fileID: 16265096}
+  _rightWheel: {fileID: 669951030}
+  _uiWheelOptions:
+  - {fileID: 1648890816}
+  - {fileID: 1466637116}
+  - {fileID: 1668376761}
+  - {fileID: 862459576}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
