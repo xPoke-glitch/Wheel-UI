@@ -44,7 +44,7 @@ public class UIWheel : MonoBehaviour
 
     public void ShowWheel(float delay = 0, Action OnComplete = null)
     {
-        this.transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack).SetDelay(delay);
+        this.transform.DOScale(new Vector3(1.5f,1.5f,1.5f), 0.5f).SetEase(Ease.OutBack).SetDelay(delay);
         _leftWheel.transform.DOLocalRotate(Vector3.zero, 0.5f).SetEase(Ease.OutBack).SetDelay(delay+0.1f);
         _rightWheel.transform.DOLocalRotate(Vector3.zero, 0.5f).SetEase(Ease.OutBack).SetDelay(delay + 0.1f).OnComplete(() =>
         {
