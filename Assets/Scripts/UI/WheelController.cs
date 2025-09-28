@@ -3,6 +3,8 @@ using UnityEngine.InputSystem;
 
 public class WheelController : MonoBehaviour
 {
+    public bool IsWheelActive { get; private set; }
+
     [Header("References")]
     [SerializeField]
     private UIWheel _uiWheel;
@@ -21,9 +23,11 @@ public class WheelController : MonoBehaviour
     [SerializeField]
     private WheelData _wheelData;
 
-    private int _currentSelectedIndex = 0;
+    [Header("Settings")]
+    [SerializeField]
+    private float _wheelShowDelay = 1.0f;
 
-    private bool _isWheelActive = false;
+    private int _currentSelectedIndex = 0;
 
     private void Start()
     {
@@ -33,7 +37,7 @@ public class WheelController : MonoBehaviour
             return;
         }
         _currentSelectedIndex = 0;
-        _isWheelActive = false;
+        IsWheelActive = false;
     }
 
     private void OnEnable()
@@ -89,7 +93,7 @@ public class WheelController : MonoBehaviour
     {
         _uiWheel.SetSelectionByIndex(_currentSelectedIndex, false);
         _currentSelectedIndex = 0;
-        _isWheelActive = false; // Needed? Maybe not
+        IsWheelActive = false; // Needed? Maybe not
     }
 
     private void HandleOnMouseEnterOption(UIWheelOption option)
@@ -105,15 +109,15 @@ public class WheelController : MonoBehaviour
 
     private void HandleOnEntityClicked(Entity entity)
     {
-        if(_isWheelActive)
+        if(IsWheelActive)
         {
             return;
         }
         
         if (entity == _entity)
         {
-            _isWheelActive = true;
-           _uiWheel.ShowWheel(0, () => {
+            IsWheelActive = true;
+           _uiWheel.ShowWheel(_wheelShowDelay, () => {
                 _uiWheel.SetSelectionByIndex(_currentSelectedIndex, true);
             });
         }
@@ -121,7 +125,7 @@ public class WheelController : MonoBehaviour
 
     private void HandleActiveOption()
     {
-        if (!_isWheelActive) return;
+        if (!IsWheelActive) return;
         IActivable ability = _wheelData.GetAbilityByIndex(_currentSelectedIndex);
         if (ability != null)
         {

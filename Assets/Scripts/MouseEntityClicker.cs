@@ -39,6 +39,10 @@ public class MouseEntityClicker : MonoBehaviour
 
             if(hitObj.TryGetComponent(out targetEntity))
             {
+                if (EntityManager.Instance.AreAnyWheelActive() && !targetEntity.IsWheelActive())
+                {
+                    return;
+                }
                 targetEntity.Click();
             }
         }
