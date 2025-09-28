@@ -851,6 +851,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6687292939798947207, guid: 88f88f4226c121643adcbf8370f83cce, type: 3}
+      propertyPath: _waitTime.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6687292939798947207, guid: 88f88f4226c121643adcbf8370f83cce, type: 3}
+      propertyPath: _moveDuration.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6687292939798947207, guid: 88f88f4226c121643adcbf8370f83cce, type: 3}
+      propertyPath: _moveDuration.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6687292939798947207, guid: 88f88f4226c121643adcbf8370f83cce, type: 3}
+      propertyPath: _maxAreaCorner.x
+      value: 8.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 6687292939798947207, guid: 88f88f4226c121643adcbf8370f83cce, type: 3}
+      propertyPath: _maxAreaCorner.y
+      value: -4.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 6687292939798947207, guid: 88f88f4226c121643adcbf8370f83cce, type: 3}
+      propertyPath: _minAreaCorner.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6687292939798947207, guid: 88f88f4226c121643adcbf8370f83cce, type: 3}
+      propertyPath: _minAreaCorner.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9160493104634869033, guid: 88f88f4226c121643adcbf8370f83cce, type: 3}
       propertyPath: m_Camera
       value: 
@@ -1483,6 +1511,34 @@ PrefabInstance:
     - target: {fileID: 4153721484388331980, guid: 88f88f4226c121643adcbf8370f83cce, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6687292939798947207, guid: 88f88f4226c121643adcbf8370f83cce, type: 3}
+      propertyPath: _waitTime.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6687292939798947207, guid: 88f88f4226c121643adcbf8370f83cce, type: 3}
+      propertyPath: _moveDuration.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6687292939798947207, guid: 88f88f4226c121643adcbf8370f83cce, type: 3}
+      propertyPath: _moveDuration.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6687292939798947207, guid: 88f88f4226c121643adcbf8370f83cce, type: 3}
+      propertyPath: _maxAreaCorner.x
+      value: 0.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 6687292939798947207, guid: 88f88f4226c121643adcbf8370f83cce, type: 3}
+      propertyPath: _maxAreaCorner.y
+      value: 8.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 6687292939798947207, guid: 88f88f4226c121643adcbf8370f83cce, type: 3}
+      propertyPath: _minAreaCorner.x
+      value: -8.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6687292939798947207, guid: 88f88f4226c121643adcbf8370f83cce, type: 3}
+      propertyPath: _minAreaCorner.y
+      value: -0.26
       objectReference: {fileID: 0}
     - target: {fileID: 9160493104634869033, guid: 88f88f4226c121643adcbf8370f83cce, type: 3}
       propertyPath: m_Camera
