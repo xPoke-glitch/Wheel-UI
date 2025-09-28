@@ -622,6 +622,32 @@ MonoBehaviour:
       m_Action: Go Prev Option
       m_Flags: 0
     m_Flags: 0
+  _activeOptionAction:
+    m_Name: Active Option
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: e98b0dda-b23d-467b-930b-ccc4f4ddd868
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: c6c479f0-410d-4a3f-a3c1-92bb8318103a
+      m_Path: <Mouse>/leftButton
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Active Option
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 6394f7d7-e65e-4e36-af1d-be1b156b9bb0
+      m_Path: <Keyboard>/space
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Active Option
+      m_Flags: 0
+    m_Flags: 0
+  _wheelData: {fileID: 11400000, guid: fb6df29462ae53a49b607f184ad1428a, type: 2}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0

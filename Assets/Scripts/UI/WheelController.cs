@@ -14,7 +14,12 @@ public class WheelController : MonoBehaviour
     private InputAction _goNextOptionAction;
     [SerializeField]
     private InputAction _goPrevOptionAction;
+    [SerializeField]
+    private InputAction _activeOptionAction;
 
+    [Header("Data")]
+    [SerializeField]
+    private WheelData _wheelData;
 
     private int _currentSelectedIndex = 0;
 
@@ -35,26 +40,34 @@ public class WheelController : MonoBehaviour
     {
         _goNextOptionAction.Enable();
         _goPrevOptionAction.Enable();
+        _activeOptionAction.Enable();
 
         _goNextOptionAction.performed += ctx => GoNextWheelOption();
         _goPrevOptionAction.performed += ctx => GoPreviousWheelOption();
+        _activeOptionAction.performed += ctx => HandleActiveOption();
 
         UIWheelOption.OnMouseEnterOption += HandleOnMouseEnterOption;
 
         Entity.OnEntityClicked += HandleOnEntityClicked;
+
+        AbilityExit.OnAbilityExitActivated += HandleAbilityExit;
     }
 
     private void OnDisable()
     {
         _goNextOptionAction.Disable();
         _goPrevOptionAction.Disable();
+        _activeOptionAction.Disable();
 
         _goNextOptionAction.performed -= ctx => GoNextWheelOption();
         _goPrevOptionAction.performed -= ctx => GoPreviousWheelOption();
+        _activeOptionAction.performed -= ctx => HandleActiveOption();
 
         UIWheelOption.OnMouseEnterOption -= HandleOnMouseEnterOption;
 
         Entity.OnEntityClicked -= HandleOnEntityClicked;
+
+        AbilityExit.OnAbilityExitActivated -= HandleAbilityExit;
     }
 
 
@@ -76,7 +89,7 @@ public class WheelController : MonoBehaviour
     {
         _uiWheel.SetSelectionByIndex(_currentSelectedIndex, false);
         _currentSelectedIndex = 0;
-        _isWheelActive = false;
+        _isWheelActive = false; // Needed? Maybe not
     }
 
     private void HandleOnMouseEnterOption(UIWheelOption option)
@@ -88,11 +101,6 @@ public class WheelController : MonoBehaviour
             _currentSelectedIndex = newIndex;
             _uiWheel.SetSelectionByIndex(_currentSelectedIndex, true);
         }
-    }
-
-    private void HandleOnMouseExitOption(UIWheelOption option)
-    {
-        // Optional: Implement logic for when the mouse exits an option, if needed.
     }
 
     private void HandleOnEntityClicked(Entity entity)
@@ -109,5 +117,26 @@ public class WheelController : MonoBehaviour
                 _uiWheel.SetSelectionByIndex(_currentSelectedIndex, true);
             });
         }
+    }
+
+    private void HandleActiveOption()
+    {
+        if (!_isWheelActive) return;
+        IActivable ability = _wheelData.GetAbilityByIndex(_currentSelectedIndex);
+        if (ability != null)
+        {
+            ability.Activate(_entity);
+        }
+        else
+        {
+            Debug.LogError("WheelController: No ability found for the selected index.");
+        }
+    }
+
+    private void HandleAbilityExit(Entity target)
+    {
+        _uiWheel.HideWheel(0,() => {
+            ResetSelection();
+        });
     }
 }
