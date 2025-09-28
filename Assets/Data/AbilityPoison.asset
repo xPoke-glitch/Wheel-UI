@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0be6ec93d058ea4590f46fcf7d9ad58, type: 3}
   m_Name: AbilityPoison
   m_EditorClassIdentifier: Assembly-CSharp::AbilityVFX
-  _vfxPrefab: {fileID: 0}
+  _vfxPrefab: {fileID: 7226888052703040409, guid: 7ec363c8df426644ea85f8d6d570561c, type: 3}
